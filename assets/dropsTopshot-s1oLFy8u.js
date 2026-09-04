@@ -1,1 +1,0 @@
-import{i as e,r as t,t as n}from"./jsx-runtime-D93Bo4CU.js";import{t as r}from"./drop-home-base-CXnfXOYP.js";var i=e(),a=t(),o=n();(0,a.createRoot)(document.getElementById(`root`)).render((0,o.jsx)(i.StrictMode,{children:(0,o.jsx)(r,{variant:`topshot`})}));
