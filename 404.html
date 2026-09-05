@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#050506" />
     <meta name="description" content="XPACK 收藏交易與卡賞體驗" />
     <title>XPACK V905</title>
-    <script type="module" crossorigin src="/xpack-poc/assets/main-BiTbcMl8.js"></script>
+    <script type="module" crossorigin src="/xpack-poc/assets/main-Cbi0zoNg.js"></script>
     <link rel="stylesheet" media="print" data-xpack-product-style crossorigin href="/xpack-poc/assets/main-JOHTNrX0.css">
   <style>/* V3.5 only. Component fallbacks preserve the other POC directions.
    Repeat this scope on a theme-preview root so aliases resolve locally. */
@@ -571,10 +571,16 @@ html[data-xpack-boot="exiting"] #xpack-boot { animation: xp-boot-exit 260ms ease
   background-size:240% 100%;
   animation:xp-card-load-sheen 1.8s ease-in-out infinite;
 }
+.xde-page[data-loading-warm="true"] [data-loading-group]:not([data-loading-state="ready"]):not([data-loading-state="error"])::after {
+  background:linear-gradient(110deg, transparent 25%, rgba(var(--xp-rgb-highlight,255,255,255),.09) 48%, transparent 72%) var(--xp-color-surface-panel);
+  background-size:240% 100%;
+  animation:xp-card-load-sheen 1.8s ease-in-out infinite;
+}
 @keyframes xp-card-load-sheen { from { background-position:100% 0; } to { background-position:-100% 0; } }
 @media (prefers-reduced-motion:reduce) {
   html[data-xpack-boot="exiting"] #root, html[data-xpack-boot="exiting"] #xpack-boot,
-  :is(.xdt-showcase-image, .xdd-tier-framed-card)[data-loading-group]::after { animation:none !important; }
+  :is(.xdt-showcase-image, .xdd-tier-framed-card)[data-loading-group]::after,
+  .xde-page[data-loading-warm="true"] [data-loading-group]::after { animation:none !important; }
   :is(.xdt-showcase-image, .xdd-tier-framed-card)[data-loading-group] img { transition:none; }
 }
 #xpack-boot-retry {
