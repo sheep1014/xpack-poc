@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#050506" />
     <meta name="description" content="XPACK 收藏交易與卡賞體驗" />
-    <title>XPACK V905</title>
-    <script type="module" crossorigin src="/xpack-poc/assets/main-Cbi0zoNg.js"></script>
-    <link rel="stylesheet" media="print" data-xpack-product-style crossorigin href="/xpack-poc/assets/main-JOHTNrX0.css">
+    <title>XPACK V911</title>
+    <script type="module" crossorigin src="/xpack-poc/assets/main-BhG34K7l.js"></script>
+    <link rel="stylesheet" media="print" data-xpack-product-style crossorigin href="/xpack-poc/assets/main-BKApOJ6E.css">
   <style>/* V3.5 only. Component fallbacks preserve the other POC directions.
    Repeat this scope on a theme-preview root so aliases resolve locally. */
 .xp-ui-scope {
@@ -618,6 +618,109 @@ html[data-xpack-boot="exiting"] #xpack-boot { animation: xp-boot-exit 260ms ease
   font: 400 12px/18px var(--xp-font-sans);
 }
 #xpack-media-error button { flex-shrink: 0; min-height: 44px; padding: 8px 12px; border: 0; border-radius: 8px; color: var(--xp-color-on-action); background: var(--xp-color-action-fill); font: 500 12px/18px var(--xp-font-sans); }
+
+/* Local weak-network state: preserve content and actions while artwork waits. */
+.xp-ui-v911-document [data-loading-group]:not([data-loading-state="ready"]):not([data-loading-state="error"])::after {
+  background:linear-gradient(110deg,transparent 25%,rgba(var(--xp-rgb-highlight,255,255,255),.08) 48%,transparent 72%) var(--xp-color-surface-panel);
+  background-size:240% 100%; animation:xp-card-load-sheen 1.8s ease-in-out infinite;
+}
+.xp-ui-v911-document [data-loading-group][data-loading-state="error"]::after {
+  background:var(--xp-media-card-placeholder) center / 36px 36px no-repeat var(--xp-color-surface-panel); opacity:1;
+}
+.xp-ui-v911-document [data-loading-group][data-loading-state="error"]:has(img[data-fallback-kind="box"])::after { background-image:var(--xp-media-box-placeholder); }
+.xp-ui-v911-document #xpack-media-error button,
+.xp-ui-v911-document #xpack-boot-retry { border:1px solid var(--xp-color-border-default); background:transparent; color:var(--xp-color-text-primary); }
+@media (prefers-reduced-motion:reduce) {
+  .xp-ui-v911-document [data-loading-group]::after { animation:none !important; }
+}
+
+.xp-ui-v911-document [data-loading-browse] .xpack-collectible-image[data-image-state="loading"] {
+  background:linear-gradient(110deg,transparent 25%,rgba(var(--xp-rgb-highlight,255,255,255),.08) 48%,transparent 72%) var(--xp-color-surface-panel);
+  background-size:240% 100%; animation:xp-card-load-sheen 1.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion:reduce) {
+  .xp-ui-v911-document [data-loading-browse] .xpack-collectible-image[data-image-state="loading"] { animation:none; }
+}
+
+/* Pack-list loading uses one transparent sweep across the complete product card. */
+.xp-ui-v911-document .xde-draw-card.is-prize-led[data-loading-group][data-loading-state="pending"]::after {
+  z-index: 10;
+  background: linear-gradient(110deg, transparent 25%, rgba(var(--xp-rgb-highlight,255,255,255),.08) 48%, transparent 72%);
+  background-size: 240% 100%;
+  opacity: 1;
+}
+.xp-ui-v911-document .xde-draw-card.is-prize-led[data-loading-state="pending"] :is(.xde-prize-led-pack, .xde-prize-led-stack) {
+  visibility: hidden;
+}
+.xp-ui-v911-document .xde-draw-card.is-prize-led[data-loading-state="pending"] [data-loading-group]::after {
+  content: none;
+}
+
+.xp-ui-v911-document .xde-winner-marquee:has([data-loading-state="pending"]) {
+  position: relative;
+  isolation: isolate;
+}
+.xp-ui-v911-document .xde-winner-marquee:has([data-loading-state="pending"])::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 25%, rgba(var(--xp-rgb-highlight,255,255,255),.08) 48%, transparent 72%);
+  background-size: 240% 100%;
+  animation: xp-card-load-sheen 1.8s ease-in-out infinite;
+}
+.xp-ui-v911-document .xde-winner-marquee:has([data-loading-state="pending"]) .xde-winner-thumbnail { visibility: hidden; }
+.xp-ui-v911-document .xde-winner-marquee:has([data-loading-state="pending"]) [data-loading-group]::after { content: none; }
+@media (prefers-reduced-motion: reduce) {
+  .xp-ui-v911-document .xde-winner-marquee::after { animation: none !important; }
+}
+
+/* Move exactly one repeating gradient tile per cycle at a constant speed. */
+.xp-ui-v911-document .xde-draw-card.is-prize-led[data-loading-group][data-loading-state="pending"]::after,
+.xp-ui-v911-document [data-loading-group]:not([data-loading-state="ready"]):not([data-loading-state="error"])::after,
+.xp-ui-v911-document [data-loading-browse] .xpack-collectible-image[data-image-state="loading"],
+.xp-ui-v911-document .xde-winner-marquee:has([data-loading-state="pending"])::after {
+  background-size: 200% 100%;
+  animation-timing-function: linear;
+}
+
+/* Failure surfaces follow visible card geometry, excluding exported artwork padding. */
+.xp-ui-v911-document .xde-tier-framed-card {
+  --xp-fallback-left:var(--xde-card-inset-left);
+  --xp-fallback-top:var(--xde-card-inset-top);
+  --xp-fallback-width:var(--xde-card-inset-width);
+  --xp-fallback-height:var(--xde-card-inset-height);
+}
+.xp-ui-v911-document .xdd-tier-framed-card {
+  --xp-fallback-left:var(--xdd-card-inset-left);
+  --xp-fallback-top:var(--xdd-card-inset-top);
+  --xp-fallback-width:var(--xdd-card-inset-width);
+  --xp-fallback-height:var(--xdd-card-inset-height);
+}
+.xp-ui-v911-document :is(.xde-tier-framed-card,.xdd-tier-framed-card)[data-loading-state="error"]::after {
+  inset:auto;
+  left:calc(var(--xp-fallback-left) - 4%);
+  top:calc(var(--xp-fallback-top) - 3%);
+  width:calc(var(--xp-fallback-width) + 8%);
+  height:calc(var(--xp-fallback-height) + 6%);
+  box-sizing:border-box;
+  border-radius:7% / 4%;
+  background-size:min(36px,60%) auto;
+}
+.xp-ui-v911-document :is(.xde-draw-card.is-prize-led,.xdd-hero-module)[data-loading-state="error"]::after { content:none; }
+.xp-ui-v911-document .xde-draw-card[data-loading-state="error"] .xde-prize-led-pack::after,
+.xp-ui-v911-document .xdd-hero-module[data-loading-state="error"] .xdd-hero-media::after {
+  content:''; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:52px; height:72px; box-sizing:border-box; border-radius:6px;
+  border:1px solid var(--xp-color-border-subtle);
+  background:var(--xp-media-box-placeholder) center / 32px 32px no-repeat var(--xp-color-surface-panel);
+  pointer-events:none;
+}
+.xp-ui-v911-document .xdd-hero-module[data-loading-state="error"] .xdd-hero-media::after {
+  width:88px; height:124px; border-radius:8px; background-size:40px 40px;
+}
 </style></head>
   <body class="xp-ui-scope">
     <div id="xpack-boot" class="xp-ui-scope"><div class="xp-brand-loading" data-state="loading" aria-busy="true">
