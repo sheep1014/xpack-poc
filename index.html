@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#050506" />
     <meta name="description" content="XPACK 收藏交易與卡賞體驗" />
-    <title>XPACK V916</title>
-    <script type="module" crossorigin src="/xpack-poc/assets/main-A7ADY4ye.js"></script>
-    <link rel="stylesheet" media="print" data-xpack-product-style crossorigin href="/xpack-poc/assets/main-9t74DpDh.css">
+    <title>XPACK V917</title>
+    <script type="module" crossorigin src="/xpack-poc/assets/main-B90H31Hq.js"></script>
+    <link rel="stylesheet" media="print" data-xpack-product-style crossorigin href="/xpack-poc/assets/main-C7EiykhC.css">
   <style>/* V3.5 only. Component fallbacks preserve the other POC directions.
    Repeat this scope on a theme-preview root so aliases resolve locally. */
 .xp-ui-scope {
@@ -658,32 +658,14 @@ html[data-xpack-boot="exiting"] #xpack-boot { animation: xp-boot-exit 260ms ease
   content: none;
 }
 
-.xp-ui-v911-document .xde-winner-marquee:has([data-loading-state="pending"]) {
-  position: relative;
-  isolation: isolate;
-}
-.xp-ui-v911-document .xde-winner-marquee:has([data-loading-state="pending"])::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  border-radius: inherit;
-  pointer-events: none;
-  background: linear-gradient(110deg, transparent 25%, rgba(var(--xp-rgb-highlight,255,255,255),.08) 48%, transparent 72%);
-  background-size: 240% 100%;
-  animation: xp-card-load-sheen 1.8s ease-in-out infinite;
-}
-.xp-ui-v911-document .xde-winner-marquee:has([data-loading-state="pending"]) .xde-winner-thumbnail { visibility: hidden; }
-.xp-ui-v911-document .xde-winner-marquee:has([data-loading-state="pending"]) [data-loading-group]::after { content: none; }
-@media (prefers-reduced-motion: reduce) {
-  .xp-ui-v911-document .xde-winner-marquee::after { animation: none !important; }
-}
+/* Winner cards load independently: an offscreen loop copy must never hide
+   decoded cards currently visible in the activity strip. Each framed card
+   retains its own loading sweep and failure placeholder. */
 
 /* Move exactly one repeating gradient tile per cycle at a constant speed. */
 .xp-ui-v911-document .xde-draw-card.is-prize-led[data-loading-group][data-loading-state="pending"]::after,
 .xp-ui-v911-document [data-loading-group]:not([data-loading-state="ready"]):not([data-loading-state="error"])::after,
-.xp-ui-v911-document [data-loading-browse] .xpack-collectible-image[data-image-state="loading"],
-.xp-ui-v911-document .xde-winner-marquee:has([data-loading-state="pending"])::after {
+.xp-ui-v911-document [data-loading-browse] .xpack-collectible-image[data-image-state="loading"] {
   background-size: 200% 100%;
   animation-timing-function: linear;
 }
