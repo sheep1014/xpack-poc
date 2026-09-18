@@ -984,7 +984,8 @@ card.moviePromo|電影宣傳卡|Movie promo
 card.trainerHolo|訓練師 Holo|Trainer Holo
 card.eventWinner|賽事優勝卡|Event winner
 card.activityPromo|活動宣傳卡|Event promo`.split(`
-`).map(e=>{let[t,n,r]=e.split(`|`);if(!t||!n||!r)throw Error(`Invalid product message: ${e}`);return{id:t,zh:n,en:r}}),Sr=`activity.drewLabel|{user} 抽中|{user} drew
+`).map(e=>{let[t,n,r]=e.split(`|`);if(!t||!n||!r)throw Error(`Invalid product message: ${e}`);return{id:t,zh:n,en:r}}),Sr=`draw.recordOrdinal|第 {ordinal} 抽|Draw #{ordinal}
+activity.drewLabel|{user} 抽中|{user} drew
 price.referenceValue|市場參考價 {price}|Market reference {price}
 stock.quantityWarehouse|庫存 {count} {unit} · {warehouse}|Stock {count} {unit} · {warehouse}
 stock.quantity|庫存 {count} {unit}|Stock {count} {unit}
